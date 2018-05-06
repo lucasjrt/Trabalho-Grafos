@@ -1,10 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "grafo.h"
 
 struct vertice {
+    int id;
     char nome[20];
-    double latitude, longitude;
+    float latitude, longitude;
 };
 
 struct grafo {
@@ -21,6 +23,26 @@ Grafo* cria_grafo(int tam) {
         if(g != NULL) {
             g->vertice = (Vertice*) malloc(tam * sizeof(Vertice));
             if(g->vertice != NULL) {
+                char ***linha = (char***) malloc(tam * sizeof(char**));
+                for(i = 0; i < tam; i++) {
+                    linha[i] = (char**) malloc(tam * sizeof(char*));
+                }
+                for(i = 0; i < tam; i++) {
+                    FILE *f = fopen("nos.txt", "r+");
+                    if(f == NULL) {
+                        printf("O arquivo nos.txt nao pode ser aberto.\n");
+                    } else {
+                        for(int j = 0; j < tam; j++) {
+                            fscanf(f, "%[^\n]s", linha[j]);
+                        }
+                        fclose(f);
+                    }
+                    g->vertice[i].id = atoi(strtok(linha, ";"));
+                    strcpy(g->vertice[i].nome, strtok(NULL, ";"));
+                    //g->vertice[i].nome = strtok(NULL, ";");
+                    g->vertice[i].latitude = atof(strtok(NULL, ";"));
+                    g->vertice[i].longitude = atof(strtok(NULL, ";"));
+                }
                 g->matAdjacencia = (int**) malloc(tam * sizeof(int*));
                 if(g->matAdjacencia != NULL) {
                     for(i = 0; i < tam; i++) {
@@ -28,7 +50,6 @@ Grafo* cria_grafo(int tam) {
                         if(g->matAdjacencia[i] != NULL) continue;
                         else {
                             printf("Nao foi possivel alocar espaco na posicao %d, cancelando a alocacao das outras posicoes.\n", i);
-                            break;
                         }
                     }
                 } else {
@@ -41,8 +62,14 @@ Grafo* cria_grafo(int tam) {
         } else {
             printf("Nao foi possivel alocar espaco para o grafo.\n");
         }
+        return g;
     }
-    return g;
+    return NULL;
+}
+
+void imprimeVertices(Grafo *g) {
+    for(int i = 0; i < numVertices(g); i++)
+        printf("id: %d\nnome: %s\nlatitude: %f\nlongitude: %f\n", g->vertice[i].id, g->vertice[i].nome, g->vertice[i].latitude, g->vertice[i].longitude);
 }
 
 int numVertices(Grafo *g) {
