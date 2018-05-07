@@ -71,7 +71,7 @@ int grauVertice(Grafo *g, int v) {
     if (g == NULL) {
         printf("Grafo inconsistente.\n");
         return -1;
-    } else if (v < 0 || v >= numVertices(g)) {
+    } else if (v < 0 || v > numVertices(g)) {
         printf("Vertice invalido.\n");
         return -1;
     } else {
@@ -87,7 +87,7 @@ int ehAdjacente(Grafo *g, int v1, int v2) {
     if (g == NULL) {
         printf("Grafo inconsistente.\n");
         return -1;
-    } else if(v1 < 0 || v1 >= numVertices(g) || v2 < 0 || v2 >= numVertices(g)) {
+    } else if(v1 < 0 || v1 > numVertices(g) || v2 < 0 || v2 > numVertices(g)) {
         printf("Vertice invalido.\n");
         return -1;
     } else {
@@ -115,6 +115,8 @@ int insereAresta(Grafo *g, int v1, int v2, int peso) {
     if (g == NULL) {
         printf("Grafo invalido.\n");
         return -1;
+    } else if (v1 < 0 || v1 > numVertices(g) || v2 < 0 || v2 > numVertices(g)){
+        printf("Aresta invalida.\n");
     } else {
         g->matAdjacencia[v1][v2] = peso;
         return 1;

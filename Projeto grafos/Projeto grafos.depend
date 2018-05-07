@@ -1,15 +1,15 @@
 # depslib dependency file v1.0
-1525699611 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\main.c
+1525714609 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"grafo.h"
 
-1525699507 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.c
+1525714502 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"grafo.h"
 
-1525699203 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.h
+1525714502 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.h
 

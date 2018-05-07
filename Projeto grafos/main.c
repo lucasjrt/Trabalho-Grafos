@@ -17,9 +17,9 @@ int main()
     Grafo *g = cria_grafo(26);
     leArestas(g);
     //printf("%d\n", grauVertice(g,4));
-    printf("%d", ehAdjacente(g, 15, 1));
+    //printf("%d", ehAdjacente(g, 15, 1));
     //imprimeVertices(g);
     //imprimeMatAdj(g);
-    //printf("%d", countlines("arestas.txt"));
+    printf("%d", countlines("arestas.txt"));
     return 0;
 }
