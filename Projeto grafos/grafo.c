@@ -23,25 +23,21 @@ Grafo* cria_grafo(int tam) {
         if(g != NULL) {
             g->vertice = (Vertice*) malloc(tam * sizeof(Vertice));
             if(g->vertice != NULL) {
-                char ***linha = (char***) malloc(tam * sizeof(char**));
-                for(i = 0; i < tam; i++) {
-                    linha[i] = (char**) malloc(tam * sizeof(char*));
-                }
-                for(i = 0; i < tam; i++) {
-                    FILE *f = fopen("nos.txt", "r+");
-                    if(f == NULL) {
-                        printf("O arquivo nos.txt nao pode ser aberto.\n");
-                    } else {
-                        for(int j = 0; j < tam; j++) {
-                            fscanf(f, "%[^\n]s", linha[j]);
-                        }
-                        fclose(f);
+                char strings[tam][50];
+                FILE *f = fopen("nos.txt", "r+");
+                if(f == NULL) {
+                    printf("Erro ao abrir o arquivo nos.txt.\n");
+                } else {
+                    for(i = 0; i < tam; i++) {
+                        fgets(strings[i], 50, f);
                     }
-                    g->vertice[i].id = atoi(strtok(linha, ";"));
-                    strcpy(g->vertice[i].nome, strtok(NULL, ";"));
-                    //g->vertice[i].nome = strtok(NULL, ";");
-                    g->vertice[i].latitude = atof(strtok(NULL, ";"));
-                    g->vertice[i].longitude = atof(strtok(NULL, ";"));
+                    fclose(f);
+                    for(i = 0; i < tam; i++) {
+                        g->vertice[i].id = atoi(strtok(strings[i], ";"));
+                        strcpy(g->vertice[i].nome, strtok(NULL, ";"));
+                        g->vertice[i].latitude = atof(strtok(NULL, ";"));
+                        g->vertice[i].longitude = atof(strtok(NULL, ";"));
+                    }
                 }
                 g->matAdjacencia = (int**) malloc(tam * sizeof(int*));
                 if(g->matAdjacencia != NULL) {

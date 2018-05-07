@@ -5,14 +5,17 @@
 
 int main()
 {
-    FILE *f = fopen("nos.txt", "r+");
-    char strings[26][50];
-    for(int i = 0; i < 26; i++) {
-        fgets(strings[i], sizeof(strings[i]), f);
-    }
-    fclose(f);
-    for(int i = 0; i < 26; i++) {
-        printf("%s", strings[i]);
-    }
+    //FILE *f = fopen("nos.txt", "r+");
+    //char strings[26][50];
+    //for(int i = 0; i < 26; i++) {
+        //fgets(strings[i], sizeof(strings[i]), f);
+    //}
+    //fclose(f);
+    //for(int i = 0; i < 26; i++) {
+        //printf("%s", strings[i]);
+    //}
+    Grafo *g = cria_grafo(26);
+
+    imprimeVertices(g);
     return 0;
 }
