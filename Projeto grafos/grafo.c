@@ -67,6 +67,36 @@ Grafo* cria_grafo(int tam) {
     return NULL;
 }
 
+int grauVertice(Grafo *g, int v) {
+    if (g == NULL) {
+        printf("Grafo inconsistente.\n");
+        return -1;
+    } else if (v < 0 || v >= numVertices(g)) {
+        printf("Vertice invalido.\n");
+        return -1;
+    } else {
+        int nvertices = 0;
+        for(int i = 0; i < numVertices(g); i++) {
+            if(g->matAdjacencia[v][i] != 0) nvertices++;
+        }
+        return nvertices;
+    }
+}
+
+int ehAdjacente(Grafo *g, int v1, int v2) {
+    if (g == NULL) {
+        printf("Grafo inconsistente.\n");
+        return -1;
+    } else if(v1 < 0 || v1 >= numVertices(g) || v2 < 0 || v2 >= numVertices(g)) {
+        printf("Vertice invalido.\n");
+        return -1;
+    } else {
+        if (g->matAdjacencia[v1][v2] != 0)
+            return 1;
+        else return 0;
+    }
+}
+
 void imprimeVertices(Grafo *g) {
     for(int i = 0; i < numVertices(g); i++)
         printf("id: %d\nnome: %s\nlatitude: %f\nlongitude: %f\n", g->vertice[i].id, g->vertice[i].nome, g->vertice[i].latitude, g->vertice[i].longitude);
