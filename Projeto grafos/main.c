@@ -15,7 +15,9 @@ int main()
         //printf("%s", strings[i]);
     //}
     Grafo *g = cria_grafo(26);
-
+    leArestas(g);
     imprimeVertices(g);
+    imprimeMatAdj(g);
+    //printf("%d", countlines("arestas.txt"));
     return 0;
 }
