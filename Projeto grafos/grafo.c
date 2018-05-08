@@ -24,7 +24,7 @@ Grafo* cria_grafo(int tam) {
             g->vertice = (Vertice*) malloc(tam * sizeof(Vertice));
             if(g->vertice != NULL) {
                 char strings[tam][50];
-                FILE *f = fopen("nos.txt", "r+");
+                FILE *f = fopen("nos.txt", "r");
                 if(f == NULL) {
                     printf("Erro ao abrir o arquivo nos.txt.\n");
                 } else {

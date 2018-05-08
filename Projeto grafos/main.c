@@ -18,8 +18,8 @@ int main()
     leArestas(g);
     //printf("%d\n", grauVertice(g,4));
     //printf("%d", ehAdjacente(g, 15, 1));
-    //imprimeVertices(g);
-    //imprimeMatAdj(g);
+    imprimeVertices(g);
+    imprimeMatAdj(g);
     printf("%d", countlines("arestas.txt"));
     return 0;
 }
