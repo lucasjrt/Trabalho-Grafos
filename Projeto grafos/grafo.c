@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 #include "grafo.h"
+#include "lista.h"
 
 struct vertice {
-    int id;
+    int id, grau;
     char nome[20];
     float latitude, longitude;
 };
@@ -12,55 +13,45 @@ struct vertice {
 struct grafo {
     int numVertices, numArestas;
     Vertice *vertice;
-    int **matAdjacencia;
+    Lista **arestas;
 };
 
-Grafo* cria_grafo(int tam) {
-    if(tam <= 0) printf("Erro, o grafo deve ter pelo menos um vertice.\n");
+Grafo *cria_grafo(int tam) {
+    if(tam <= 0)
+        printf("O grafo deve ter pelo menos um vertice.\n");
     else {
-        int i;
-        Grafo *g = (Grafo*) malloc(sizeof(Grafo));
-        if(g != NULL) {
+        Grafo *g = (Grafo*) malloc(tam * sizeof(Grafo));
+        if(g == NULL)
+            printf("Ocorreu um erro na alocacao do gafo.\n");
+        else {
             g->vertice = (Vertice*) malloc(tam * sizeof(Vertice));
-            if(g->vertice != NULL) {
+            if(g->vertice == NULL)
+                printf("Ocorreu um erro na alocacao do vetor de vertices.\n");
+            else {
+                g->numVertices = tam;
                 char strings[tam][50];
                 FILE *f = fopen("nos.txt", "r");
                 if(f == NULL) {
                     printf("Erro ao abrir o arquivo nos.txt.\n");
                 } else {
-                    for(i = 0; i < tam; i++) {
+                    for(int i = 0; i < tam; i++) {
                         fgets(strings[i], 50, f);
                     }
                     fclose(f);
-                    for(i = 0; i < tam; i++) {
+                    for(int i = 0; i < tam; i++) {
                         g->vertice[i].id = atoi(strtok(strings[i], ";"));
                         strcpy(g->vertice[i].nome, strtok(NULL, ";"));
                         g->vertice[i].latitude = atof(strtok(NULL, ";"));
                         g->vertice[i].longitude = atof(strtok(NULL, ";"));
                     }
                 }
-                g->matAdjacencia = (int**) malloc(tam * sizeof(int*));
-                if(g->matAdjacencia != NULL) {
-                    for(i = 0; i < tam; i++) {
-                        g->matAdjacencia[i] = (int*) malloc(tam * sizeof(int));
-                        if(g->matAdjacencia[i] != NULL) {
-                            for(int j = 0; j < tam; j++) {
-                                g->matAdjacencia[i][j] = 0;
-                            }
-                        }
-                        else {
-                            printf("Nao foi possivel alocar espaco na posicao %d, cancelando a alocacao das outras posicoes.\n", i);
-                        }
-                    }
-                } else {
-                    printf("Nao foi possivel alocar espaco para o vetor de ponteiros da matriz de adjacencia.\n");
-                }
-            } else {
-                printf("Nao foi possivel alocar espaco para o vetor de vertices.\n");
+                g->arestas = (Lista**) malloc(tam * sizeof(Lista*));
+                if(g->arestas == NULL)
+                    printf("Erro ao alocar o vetor de listas para representar as arestas.\n");
+                else
+                    for(int i = 0; i < numVertices(g); i++)
+                        g->arestas[i] = cria_lista();
             }
-            g->numVertices = tam;
-        } else {
-            printf("Nao foi possivel alocar espaco para o grafo.\n");
         }
         return g;
     }
@@ -75,11 +66,7 @@ int grauVertice(Grafo *g, int v) {
         printf("Vertice invalido.\n");
         return -1;
     } else {
-        int nvertices = 0;
-        for(int i = 0; i < numVertices(g); i++) {
-            if(g->matAdjacencia[v][i] != 0) nvertices++;
-        }
-        return nvertices;
+        return g->vertice[v].grau;
     }
 }
 
@@ -87,13 +74,14 @@ int ehAdjacente(Grafo *g, int v1, int v2) {
     if (g == NULL) {
         printf("Grafo inconsistente.\n");
         return -1;
-    } else if(v1 < 0 || v1 > numVertices(g) || v2 < 0 || v2 > numVertices(g)) {
+    } else if(v1 < 0 || v1 > numVertices(g) || v2 < 0 || v2 > numVertices(g) || g->arestas[v1] == NULL) {
         printf("Vertice invalido.\n");
         return -1;
     } else {
-        if (g->matAdjacencia[v1][v2] != 0)
+        if (contem(g->arestas[v1], g->vertice[v2]))
             return 1;
-        else return 0;
+        else
+            return 0;
     }
 }
 
@@ -117,16 +105,21 @@ int insereAresta(Grafo *g, int v1, int v2, int peso) {
         return -1;
     } else if (v1 < 0 || v1 > numVertices(g) || v2 < 0 || v2 > numVertices(g)){
         printf("Aresta invalida.\n");
+        return -1;
     } else {
-        g->matAdjacencia[v1][v2] = peso;
-        return 1;
+        if(contem(g->arestas[v2], g->vertice[v1])) {
+            //return 1;
+        }
+        insereNaLista(g->arestas[v1], g->vertice[v2], peso);
+        g->numArestas++;
     }
+    return 1;
 }
 
 int leArestas(Grafo *g) {
     int nlinhas = countlines("arestas.txt");
     char strings[nlinhas][20];
-    FILE *f = fopen("arestas.txt", "r+");
+    FILE *f = fopen("arestas.txt", "r");
     if(f == NULL)
         printf("Erro ao abrir o arquivo arestas.txt.\n");
     else {
@@ -134,7 +127,7 @@ int leArestas(Grafo *g) {
             fgets(strings[i], 20, f);
         }
         fclose(f);
-        for(int i = 0; i < nlinhas; i++) {
+        for(int i = 0; i <= nlinhas; i++) {
             int v1 = atoi(strtok(strings[i], ";"));
             int v2 = atoi(strtok(NULL, ";"));
             int peso = atoi(strtok(NULL, ";"));
@@ -144,12 +137,11 @@ int leArestas(Grafo *g) {
     return 1;
 }
 
-void imprimeMatAdj(Grafo *g) {
+void imprimeListaAdj(Grafo *g) {
     for(int i = 0; i < numVertices(g); i++) {
-        for (int j = 0; j < numVertices(g); j++) {
-            printf("%5d ", g->matAdjacencia[i][j]);
-        }
-        putchar('\n');
+        printf("Vertice %d: ", i);
+        imprimeLista(g->arestas[i]);
+        printf("\n");
     }
 }
 

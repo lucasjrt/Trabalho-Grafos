@@ -11,7 +11,7 @@ int ehAdjacente(Grafo *g, int v1, int v2);
 int grauVertice(Grafo *g, int v);
 void dijkstra(Grafo *g, int v);
 void imprimeVertices(Grafo *g);
-void imprimeMatAdj(Grafo *g);
+void imprimeListaAdj(Grafo *g);
 int countlines(char *file);
 
 #endif // GRAFO_H_INCLUDED

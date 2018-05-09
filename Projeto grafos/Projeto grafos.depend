@@ -1,24 +1,73 @@
 # depslib dependency file v1.0
-1525831421 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\main.c
+1525859323 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"grafo.h"
 	"lista.h"
 
-1525829871 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.c
+1525859962 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"grafo.h"
+	"lista.h"
 
-1525715515 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.h
+1525833688 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.h
 
-1525830976 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\lista.c
+1525834363 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\lista.c
 	<stdlib.h>
 	<stdio.h>
 	"grafo.h"
 	"lista.h"
 
-1525831537 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\lista.h
+1525834341 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\lista.h
+
+1525861336 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projetografos\grafo.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"grafo.h"
+	"lista.h"
+
+1525833688 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projetografos\grafo.h
+
+1525861325 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projetografos\lista.h
+
+1525861621 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projetografos\lista.c
+	<stdlib.h>
+	<stdio.h>
+	"grafo.h"
+	"lista.h"
+
+1525859323 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projetografos\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"grafo.h"
+	"lista.h"
+
+1525863980 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\grafo.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"grafo.h"
+	"lista.h"
+
+1525833688 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\grafo.h
+
+1525861325 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\lista.h
+
+1525864032 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\lista.c
+	<stdlib.h>
+	<stdio.h>
+	"grafo.h"
+	"lista.h"
+
+1525863963 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"grafo.h"
+	"lista.h"
 

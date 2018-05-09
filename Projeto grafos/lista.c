@@ -11,6 +11,7 @@ struct vertice {
 
 struct no {
     Vertice vertice;
+    int peso;
     struct no *prox;
 };
 
@@ -46,13 +47,14 @@ int tamLista(Lista *l) {
     }
 }
 
-int insereNaLista(Lista *l, Vertice vertice) {
+int insereNaLista(Lista *l, Vertice vertice, int peso) {
     if(l == NULL) {
         printf("Lista invalida.\n");
         return -1;
     }
     No *n = (No*) malloc(sizeof(No));
     n->vertice = vertice;
+    n->peso = peso;
     n->prox = NULL;
     if (tamLista(l) == 0) {
         l->cabeca = n;
@@ -95,11 +97,30 @@ int destroiLista(Lista *l) {
     return 1;
 }
 
-/*void imprimeLista(Lista *l) {
+int contem(Lista *l, Vertice vertice) {
+    No *aux = l->cabeca;
+    while(aux != NULL) {
+        if(aux->vertice.id == vertice.id) {
+            break;
+        }
+        else {
+            aux = aux->prox;
+        }
+    }
+    if(aux == NULL)
+        return 0;
+    return 1;
+}
+
+int listaSize() {
+    return sizeof(Lista);
+}
+
+void imprimeLista(Lista *l) {
     No *aux = l->cabeca;
     for(int i = 0; i < tamLista(l); i++) {
-        printf("%d ", aux->vertice);
-        if(i != tamLista(l) - 1) printf(", ");
+        printf("|%d|%d|  |", aux->vertice.id, aux->peso);
+        if(i != tamLista(l) - 1) printf(" -> ");
         aux = aux->prox;
     }
-}*/
+}
