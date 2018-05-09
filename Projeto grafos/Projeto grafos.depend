@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1525781274 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\main.c
+1525831421 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"grafo.h"
+	"lista.h"
 
-1525781908 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.c
+1525829871 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -13,10 +14,11 @@
 
 1525715515 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\grafo.h
 
-1525781243 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\lista.c
+1525830976 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\lista.c
+	<stdlib.h>
 	<stdio.h>
 	"grafo.h"
 	"lista.h"
 
-1525715302 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\lista.h
+1525831537 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalho grafos\projeto grafos\lista.h
 

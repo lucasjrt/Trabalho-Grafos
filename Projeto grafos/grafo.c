@@ -10,8 +10,8 @@ struct vertice {
 };
 
 struct grafo {
+    int numVertices, numArestas;
     Vertice *vertice;
-    int numVertices;
     int **matAdjacencia;
 };
 
