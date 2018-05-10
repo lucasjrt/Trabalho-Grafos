@@ -47,24 +47,24 @@
 	"grafo.h"
 	"lista.h"
 
-1525863980 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\grafo.c
+1525916806 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\grafo.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"grafo.h"
 	"lista.h"
 
-1525833688 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\grafo.h
+1525915170 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\grafo.h
 
-1525861325 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\lista.h
+1525916796 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\lista.h
 
-1525864032 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\lista.c
+1525916796 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\lista.c
 	<stdlib.h>
 	<stdio.h>
 	"grafo.h"
 	"lista.h"
 
-1525863963 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\main.c
+1525916478 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -13,5 +13,6 @@ void dijkstra(Grafo *g, int v);
 void imprimeVertices(Grafo *g);
 void imprimeListaAdj(Grafo *g);
 int countlines(char *file);
+int* ncharline(char *file);
 
 #endif // GRAFO_H_INCLUDED

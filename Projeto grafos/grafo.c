@@ -5,8 +5,8 @@
 #include "lista.h"
 
 struct vertice {
-    int id, grau;
-    char nome[20];
+    int id;
+    char nome[30];
     float latitude, longitude;
 };
 
@@ -29,13 +29,17 @@ Grafo *cria_grafo(int tam) {
                 printf("Ocorreu um erro na alocacao do vetor de vertices.\n");
             else {
                 g->numVertices = tam;
-                char strings[tam][50];
+                char **strings = (char**) malloc(tam* sizeof(char*));
+                int *sizelines = ncharline("nos.txt");
+                for(int i = 0; i < tam; i++) {
+                    strings[i] = (char*) malloc((sizelines[i] + 2) * sizeof(char));
+                }
                 FILE *f = fopen("nos.txt", "r");
                 if(f == NULL) {
                     printf("Erro ao abrir o arquivo nos.txt.\n");
                 } else {
                     for(int i = 0; i < tam; i++) {
-                        fgets(strings[i], 50, f);
+                        fgets(strings[i], sizelines[i] + 2, f);
                     }
                     fclose(f);
                     for(int i = 0; i < tam; i++) {
@@ -66,7 +70,7 @@ int grauVertice(Grafo *g, int v) {
         printf("Vertice invalido.\n");
         return -1;
     } else {
-        return g->vertice[v].grau;
+        return tamLista(g->arestas[v]);
     }
 }
 
@@ -103,13 +107,19 @@ int insereAresta(Grafo *g, int v1, int v2, int peso) {
     if (g == NULL) {
         printf("Grafo invalido.\n");
         return -1;
-    } else if (v1 < 0 || v1 > numVertices(g) || v2 < 0 || v2 > numVertices(g)){
-        printf("Aresta invalida.\n");
+    } else if(v1 < 0) {
+        printf("O v1 (%d) deve ser maior do que 0.\n", v1);
+        return -1;
+    } else if(v1 > numVertices(g)) {
+        printf("O v1 (%d) deve ser menor do que %d.\n", v1, numVertices(g));
+        return -1;
+    } else if(v2 < 0) {
+        printf("O v2 (%d) deve ser maior do que 0.\n", v2);
+        return -1;
+    } else if (v2 > numVertices(g)){
+        printf("O v2 (%d) deve ser menor do que %d.\n", v2, numVertices(g));
         return -1;
     } else {
-        if(contem(g->arestas[v2], g->vertice[v1])) {
-            //return 1;
-        }
         insereNaLista(g->arestas[v1], g->vertice[v2], peso);
         g->numArestas++;
     }
@@ -118,16 +128,20 @@ int insereAresta(Grafo *g, int v1, int v2, int peso) {
 
 int leArestas(Grafo *g) {
     int nlinhas = countlines("arestas.txt");
-    char strings[nlinhas][20];
+    char **strings = (char**) malloc(nlinhas * sizeof(char*));
+    int *tamlinhas = ncharline("arestas.txt");
+    for(int i = 0; i < nlinhas; i++) {
+        strings[i] = (char*) malloc((tamlinhas[i] + 2) * sizeof(char));
+    }
     FILE *f = fopen("arestas.txt", "r");
     if(f == NULL)
         printf("Erro ao abrir o arquivo arestas.txt.\n");
     else {
-        for(int i = 0; i <= nlinhas; i++) {
-            fgets(strings[i], 20, f);
+        for(int i = 0; i < nlinhas; i++) {
+            fgets(strings[i], tamlinhas[i]+2, f);
         }
         fclose(f);
-        for(int i = 0; i <= nlinhas; i++) {
+        for(int i = 0; i < nlinhas; i++) {
             int v1 = atoi(strtok(strings[i], ";"));
             int v2 = atoi(strtok(NULL, ";"));
             int peso = atoi(strtok(NULL, ";"));
@@ -147,18 +161,44 @@ void imprimeListaAdj(Grafo *g) {
 
 int countlines(char *file) {
     int lines = 0;
-    FILE *f = fopen(file, "r+");
-    if(f == NULL)
+    FILE *f = fopen(file, "r");
+    if(f == NULL) {
         printf("Erro ao abrir o arquivo %s.\n", file);
+        return -1;
+    }
     else {
         char ch;
-        while(!feof(f)) {
+        do {
             ch = fgetc(f);
             if(ch == '\n') {
                 lines++;
             }
-        }
+        } while(!feof(f));
         fclose(f);
     }
-    return lines;
+    return lines + 1;
+}
+
+int* ncharline(char *file) {
+    int nlines = countlines(file);
+    int *line = (int*) malloc(nlines * sizeof(int));
+    for(int i = 0; i < nlines; i++) {
+        line[i] = 0;
+    }
+    FILE *f = fopen(file, "r");
+    if(f == NULL) {
+        printf("Erro ao abrir o arquivo %s.\n", file);
+        return NULL;
+    } else {
+         for (int i = 0; i < nlines; i++) {
+            char ch = fgetc(f);
+            while(!feof(f)) {
+                ch = fgetc(f);
+                line[i]++;
+                if (ch == '\n')
+                    break;
+            }
+        }
+    }
+    return line;
 }

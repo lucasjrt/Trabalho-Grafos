@@ -5,7 +5,7 @@
 
 struct vertice {
     int id;
-    char nome[20];
+    char nome[30];
     float latitude, longitude;
 };
 
