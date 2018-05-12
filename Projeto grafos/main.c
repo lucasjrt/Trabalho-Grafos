@@ -18,7 +18,8 @@ int main()
     //printf("%d\n", grauVertice(g,4));
     //printf("%d", ehAdjacente(g, 15, 1));
     imprimeVertices(g);
-    imprimeListaAdj(g);
+    imprimeListaAdjDet(g);
+    //imprimeListaAdj(g);
 
 
     return 0;
