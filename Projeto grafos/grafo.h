@@ -12,6 +12,8 @@ int grauVertice(Grafo *g, int v);
 void dijkstra(Grafo *g, int v);
 void imprimeVertices(Grafo *g);
 void imprimeListaAdj(Grafo *g);
+void imprimeListaAdjDet(Grafo *g);
+int destroigrafo(Grafo *g);
 int countlines(char *file);
 int* ncharline(char *file);
 

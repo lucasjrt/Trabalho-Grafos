@@ -118,9 +118,11 @@ int listaSize() {
 
 void imprimeLista(Lista *l) {
     No *aux = l->cabeca;
-    for(int i = 0; i < tamLista(l); i++) {
-        printf("|%d|%d|  |", aux->vertice.id, aux->peso);
-        if(i != tamLista(l) - 1) printf(" -> ");
+    int tam = tamLista(l);
+    for(int i = 0; i < tam; i++) {
+        printf("|%3d|%5d|  | -> ", aux->vertice.id, aux->peso);
+        if(i == tam - 1) printf("NULL");
         aux = aux->prox;
     }
+    printf("\n");
 }

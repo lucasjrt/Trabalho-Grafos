@@ -159,6 +159,32 @@ void imprimeListaAdj(Grafo *g) {
     }
 }
 
+void imprimeListaAdjDet(Grafo *g) {
+    printf("(Para visualizar o grafo com detalhes na lista de adjacencia, e' recomendado visualizar o grafo com o console em tela cheia)\n");
+    int tam = numVertices(g);
+    printf(" __ \n|  |");
+    for (int j = 0; j < grauVertice(g, 0); j++)
+        printf("      ____________");
+    printf("\n");
+    for(int i = 0; i < tam; i++) {
+        printf("|%2d| ->  ", i);
+        imprimeLista(g->arestas[i]);
+        printf("|__| ");
+        for(int j = 0; j < grauVertice(g, i); j++)
+            printf("    |___|_____|__|");
+        printf("\n");
+        if(i < tam - 1)
+            printf("|  |");
+        if(i + 1 < tam) {
+        for(int j = 0; j < grauVertice(g, i+1); j++)
+            printf("      ____________");
+        }
+        printf("\n");
+        //imprimeLista(g->arestas[i]);
+    }
+    printf("(Para visualizar o grafo com detalhes na lista de adjacencia, e' recomendado visualizar o grafo com o console em tela cheia)\n");
+}
+
 int countlines(char *file) {
     int lines = 0;
     FILE *f = fopen(file, "r");
