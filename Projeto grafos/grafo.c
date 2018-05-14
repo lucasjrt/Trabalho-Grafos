@@ -74,6 +74,19 @@ int grauVertice(Grafo *g, int v) {
     }
 }
 
+void busca_largura(Grafo *g, int v){
+    int tam = numVertices(g);
+    int *visitados = (int*) malloc(tam * sizeof(int));
+    for (int i= 0; i < tam; i++)
+        visitados[i] = 0;
+    visitados[0] = 1;
+
+}
+
+void dijkstra(Grafo *g, int v) {
+
+}
+
 int ehAdjacente(Grafo *g, int v1, int v2) {
     if (g == NULL) {
         printf("Grafo inconsistente.\n");
@@ -228,3 +241,5 @@ int* ncharline(char *file) {
     }
     return line;
 }
+
+
