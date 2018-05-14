@@ -28,7 +28,12 @@ Lista* cria_lista() {
     return l;
 }
 
-No *getCabeca(Lista *l) {
+No* cria_no() {
+    No *n = (No*) malloc(sizeof(No));
+    return n;
+}
+
+No* getCabeca(Lista *l) {
     if(l == NULL) {
         No *no = NULL;
         printf("Lista invalida.\n");
@@ -114,6 +119,18 @@ int contem(Lista *l, Vertice vertice) {
 
 int listaSize() {
     return sizeof(Lista);
+}
+
+int noSize() {
+    return sizeof(No);
+}
+
+No* getProx(No *no) {
+    return no->prox;
+}
+
+void setProx(No *n1, No *n2) {
+    n1->prox = n2;
 }
 
 void imprimeLista(Lista *l) {

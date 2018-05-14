@@ -1,17 +1,22 @@
 #ifndef LISTA_H_INCLUDED
 #define LISTA_H_INCLUDED
+#include "grafo.h"
 
 typedef struct no No;
 typedef struct lista Lista;
 
 Lista* cria_lista();
-No *getCabeca(Lista *l);
+No* cria_no();
+No* getCabeca(Lista *l);
 int tamLista(Lista *l);
 int insereNaLista(Lista *l, Vertice vertice, int peso);
 int removeDaLista(Lista *l, Vertice vertice);
 int destroiLista(Lista *l);
 int contem(Lista *l, Vertice vertice);
 int listaSize();
+int noSize();
+No* getProx(No *no);
+void setProx(No *n1, No *n2);
 void imprimeLista(Lista *l);
 
 //void imprimeLista(Lista *l);
