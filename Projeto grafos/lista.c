@@ -46,6 +46,8 @@ No* getCabeca(Lista *l) {
     }
 }
 
+
+
 //Retorna o tamanho da lista (-1 se inválida)
 int tamLista(Lista *l) {
     if(l == NULL) {
@@ -143,6 +145,11 @@ int getPeso(Lista *l, int v) {
 //Retorna o sizeof(Lista)
 int listaSize() {
     return sizeof(Lista);
+}
+
+//Retorna o peso do no
+int peso(No *no) {
+    return no->peso;
 }
 
 //Retorna o sizeof(No)

@@ -1,8 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
 #include "grafo.h"
 #include "lista.h"
+#define MINFINITO INT_MIN
 
 struct vertice {
     int id;
@@ -18,7 +20,7 @@ struct grafo {
 
 //Retorna um ponteiro pra uma grafo alocado
 Grafo *cria_grafo(int tam) {
-    int i, j;
+    int i;
     if(tam <= 0)
         printf("O grafo deve ter pelo menos um vertice.\n");
     else {
@@ -93,8 +95,44 @@ void busca_largura(Grafo *g, int v){
 
 }
 
-void dijkstra(Grafo *g, int v) {
-
+void dijkstra(Grafo *g, int po, int pd) {
+    int i, j;
+    int *S = (int*) calloc(g->numVertices, sizeof(int));
+    int *D = (int*) malloc(g->numVertices * sizeof(int));
+    int Dnovo;
+    S[po] = 1;
+    for (i = 0; i < g->numVertices; i++) {
+        D[i] = MINFINITO;
+    }
+    D[po] = 0;
+    for(i = 0; i < g->numVertices; i++) {
+        if(ehAdjacente(g,po,i))
+            D[i] = getPeso(g->arestas[po], i);
+    }
+    int maior = D[0], pos = 0;
+    for(i = 1; i < g->numVertices; i++) {
+        for(j = 0; j < g->numVertices; j++) {
+            if(D[j] > maior && S[j] == 0) {
+                D[j] = maior;
+                pos = j;
+            }
+        }
+        S[pos] = 1;
+        for(j = 0; j < g->numVertices; j++) {
+            if(i != j && ehAdjacente(g, pos,j)) {
+                Dnovo = getPeso(g->arestas[pos], g->vertice[j].id);
+                if(Dnovo > D[j]) {
+                    D[j] = Dnovo;
+                }
+            }
+        }
+    }
+    printf("D: {");
+    for(i = 0; i < g->numVertices; i++) {
+        printf("%d, ", D[i]);
+    }
+    printf("}\n");
+    printf("O caminho mais rapido entre %d e %d tem uma conexao de %d mbps", po, pd, D[pd]);
 }
 
 //Retorna 1 se o vértice v1 for adjacente ao vértice v2
@@ -113,7 +151,7 @@ int ehAdjacente(Grafo *g, int v1, int v2) {
     }
 }
 
-//Imprim os vértices do grafo
+//Imprime os vértices do grafo
 void imprimeVertices(Grafo *g) {
     int i;
     for(i = 0; i < numVertices(g); i++)
@@ -263,4 +301,15 @@ int* ncharline(char *file) {
         }
     }
     return line;
+}
+
+int posMenor(int *vetor, int tam) {
+    int i, pos = vetor[0], menor = 0;
+    for(i = 0; i < tam; i++) {
+        if (vetor[i] < menor) {
+            pos = i;
+            menor = vetor[i];
+        }
+    }
+    return pos;
 }
