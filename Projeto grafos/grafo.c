@@ -16,7 +16,7 @@ struct grafo {
     Lista **arestas;
 };
 
-//Retorna um ponteiro pra uma alocação de grafo
+//Retorna um ponteiro pra uma grafo alocado
 Grafo *cria_grafo(int tam) {
     if(tam <= 0)
         printf("O grafo deve ter pelo menos um vertice.\n");
@@ -74,6 +74,11 @@ int grauVertice(Grafo *g, int v) {
     } else {
         return tamLista(g->arestas[v]);
     }
+}
+
+//Retorna o peso da aresta entre o vértice 1 e o vértice 2
+int pesoAresta(Grafo *g, int v1, int v2) {
+    return getPeso(g->arestas[v1], v2);
 }
 
 

@@ -10,6 +10,7 @@ int leArestas(Grafo *g);
 int insereAresta(Grafo *g, int v1, int v2, int peso);
 int ehAdjacente(Grafo *g, int v1, int v2);
 int grauVertice(Grafo *g, int v);
+int pesoAresta(Grafo *g, int v1, int v2);
 void busca_largura(Grafo *g, int v);
 void dijkstra(Grafo *g, int v);
 void imprimeVertices(Grafo *g);

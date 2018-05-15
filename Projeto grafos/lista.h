@@ -13,12 +13,11 @@ int insereNaLista(Lista *l, Vertice vertice, int peso);
 int removeDaLista(Lista *l, Vertice vertice);
 int destroiLista(Lista *l);
 int contem(Lista *l, Vertice vertice);
+int getPeso(Lista *l, int v);
 int listaSize();
 int noSize();
 No* getProx(No *no);
 void setProx(No *n1, No *n2);
 void imprimeLista(Lista *l);
-
-//void imprimeLista(Lista *l);
 
 #endif // LISTA_H_INCLUDED
