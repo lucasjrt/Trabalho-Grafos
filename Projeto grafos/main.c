@@ -3,6 +3,7 @@
 #include <string.h>
 #include "grafo.h"
 #include "lista.h"
+#include "fila.h"
 
 int main()
 {
@@ -17,10 +18,16 @@ int main()
     leArestas(g);
     //printf("%d\n", grauVertice(g,4));
     //printf("%d", ehAdjacente(g, 15, 1));
-    imprimeVertices(g);
-    imprimeListaAdjDet(g);
+    //imprimeVertices(g);
+    //imprimeListaAdjDet(g);
+    dijkstra(g, 0, 1);
     //imprimeListaAdj(g);
 
 
+
     return 0;
+}
+
+void menu() {
+
 }
