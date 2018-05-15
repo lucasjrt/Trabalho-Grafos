@@ -76,6 +76,11 @@ int grauVertice(Grafo *g, int v) {
     }
 }
 
+//Retorna o peso da aresta entre o vértice 1 e o vértice 2
+int pesoAresta(Grafo *g, int v1, int v2) {
+    return getPeso(g->arestas[v1], v2);
+}
+
 
 void busca_largura(Grafo *g, int v){
     int tam = numVertices(g);
@@ -180,6 +185,8 @@ void imprimeListaAdj(Grafo *g) {
         printf("\n");
     }
 }
+
+
 
 //Imprime a lista de adjacência do grafo g com detalhes
 void imprimeListaAdjDet(Grafo *g) {

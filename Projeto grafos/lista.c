@@ -117,6 +117,20 @@ int contem(Lista *l, Vertice vertice) {
     return 1;
 }
 
+int getPeso(Lista *l, int v) {
+    int i;
+    No *aux = l->cabeca;
+    for(i = 0; i < l->tam; i++) {
+        if(aux->vertice.id == v) {
+            break;
+        }
+        else {
+            aux = aux->prox;
+        }
+    }
+    return aux->peso;
+}
+
 int listaSize() {
     return sizeof(Lista);
 }
