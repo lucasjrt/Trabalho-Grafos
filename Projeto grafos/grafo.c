@@ -16,6 +16,7 @@ struct grafo {
     Lista **arestas;
 };
 
+//Retorna um ponteiro pra uma alocação de grafo
 Grafo *cria_grafo(int tam) {
     if(tam <= 0)
         printf("O grafo deve ter pelo menos um vertice.\n");
@@ -62,6 +63,7 @@ Grafo *cria_grafo(int tam) {
     return NULL;
 }
 
+//Retorna o grau do vértice v
 int grauVertice(Grafo *g, int v) {
     if (g == NULL) {
         printf("Grafo inconsistente.\n");
@@ -73,6 +75,7 @@ int grauVertice(Grafo *g, int v) {
         return tamLista(g->arestas[v]);
     }
 }
+
 
 void busca_largura(Grafo *g, int v){
     int tam = numVertices(g);
@@ -87,6 +90,7 @@ void dijkstra(Grafo *g, int v) {
 
 }
 
+//Retorna 1 se o vértice v1 for adjacente ao vértice v2
 int ehAdjacente(Grafo *g, int v1, int v2) {
     if (g == NULL) {
         printf("Grafo inconsistente.\n");
@@ -102,11 +106,13 @@ int ehAdjacente(Grafo *g, int v1, int v2) {
     }
 }
 
+//Imprim os vértices do grafo
 void imprimeVertices(Grafo *g) {
     for(int i = 0; i < numVertices(g); i++)
         printf("id: %d\nnome: %s\nlatitude: %f\nlongitude: %f\n", g->vertice[i].id, g->vertice[i].nome, g->vertice[i].latitude, g->vertice[i].longitude);
 }
 
+//Retorna o número de vértices do grafo
 int numVertices(Grafo *g) {
     //retorna -1 se for um grafo inválido
     if(g == NULL) {
@@ -116,6 +122,7 @@ int numVertices(Grafo *g) {
     return g->numVertices;
 }
 
+//Insere uma aresta entre o vértice v1 e o vértice v2 com um determinado peso
 int insereAresta(Grafo *g, int v1, int v2, int peso) {
     if (g == NULL) {
         printf("Grafo invalido.\n");
@@ -139,6 +146,7 @@ int insereAresta(Grafo *g, int v1, int v2, int peso) {
     return 1;
 }
 
+//Lê as arestas do arquivo aresta.txt
 int leArestas(Grafo *g) {
     int nlinhas = countlines("arestas.txt");
     char **strings = (char**) malloc(nlinhas * sizeof(char*));
@@ -164,6 +172,7 @@ int leArestas(Grafo *g) {
     return 1;
 }
 
+//Imprime a lista de adjacência do grafo g
 void imprimeListaAdj(Grafo *g) {
     for(int i = 0; i < numVertices(g); i++) {
         printf("Vertice %d: ", i);
@@ -172,6 +181,7 @@ void imprimeListaAdj(Grafo *g) {
     }
 }
 
+//Imprime a lista de adjacência do grafo g com detalhes
 void imprimeListaAdjDet(Grafo *g) {
     printf("(Para visualizar o grafo com detalhes na lista de adjacencia, e' recomendado visualizar o grafo com o console em tela cheia)\n");
     int tam = numVertices(g);
@@ -198,6 +208,7 @@ void imprimeListaAdjDet(Grafo *g) {
     printf("(Para visualizar o grafo com detalhes na lista de adjacencia, e' recomendado visualizar o grafo com o console em tela cheia)\n");
 }
 
+//Retorna o número de linhas do arquivo file
 int countlines(char *file) {
     int lines = 0;
     FILE *f = fopen(file, "r");
@@ -218,6 +229,7 @@ int countlines(char *file) {
     return lines + 1;
 }
 
+//Retorna um vetor de inteiros com cada posição sendo o número de caracteres na linha i
 int* ncharline(char *file) {
     int nlines = countlines(file);
     int *line = (int*) malloc(nlines * sizeof(int));
