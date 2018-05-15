@@ -8,21 +8,7 @@
 int main()
 {
     Grafo *g = cria_grafo(27);
-    //int nlinhas = countlines("nos.txt");
-    //printf("Linhas: %d\n", nlinhas);
-    //int *linhas = ncharline("nos.txt");
-    //for(int i = 0; i < nlinhas; i++) {
-        //printf("Linha %d: %d caracteres.\n", i, linhas[i]);
-    //}
-    //printf("%d", countlines("arestas.txt"));
     leArestas(g);
-    //printf("%d\n", grauVertice(g,4));
-    //printf("%d", ehAdjacente(g, 15, 1));
-    //imprimeVertices(g);
-    //imprimeListaAdjDet(g);
-    //imprimeListaAdj(g);
-
-
     menu(g);
     return 0;
 }
@@ -47,7 +33,7 @@ void menu(Grafo *g) {
         printf("\n");
         switch(opcao){
             case 1:
-                imprimeListaAdjDet(g);
+                imprimeListaAdj(g);
                 printf("\n");
                 break;
             case 2:
@@ -75,8 +61,13 @@ void menu(Grafo *g) {
                 else
                     printf("Eles nao sao adjacentes.\n\n");
                 break;
-            case 6://n sei como q faz
-                //dijkstra(Grafo *g, int v)
+            case 6:
+                printf("Escolha o vertice de origem: ");
+                scanf("%d",&v1);
+                printf("\nEscolha o vertice de destino: ");
+                scanf("%d",&v2);
+                dijkstra(g,v1,v2);
+                printf("\n");
                 break;
             case 7:
                 printf("Qual o vertice de origem: \n");

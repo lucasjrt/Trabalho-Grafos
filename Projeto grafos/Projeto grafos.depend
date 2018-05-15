@@ -47,25 +47,26 @@
 	"grafo.h"
 	"lista.h"
 
-1526348450 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\grafo.c
+1526393011 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\grafo.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
+	<limits.h>
 	"grafo.h"
 	"lista.h"
 
-1526347304 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\grafo.h
+1526388260 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\grafo.h
 
-1526347304 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\lista.h
+1526388764 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\lista.h
 	"grafo.h"
 
-1526347940 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\lista.c
+1526388915 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\lista.c
 	<stdlib.h>
 	<stdio.h>
 	"grafo.h"
 	"lista.h"
 
-1526348333 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\main.c
+1526392429 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -73,7 +74,7 @@
 	"lista.h"
 	"fila.h"
 
-1526347889 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\fila.c
+1526348558 source:c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\fila.c
 	<stdio.h>
 	<stdlib.h>
 	"lista.h"
@@ -88,28 +89,29 @@
 	"lista.h"
 	"fila.h"
 
-1526346918 c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\lista.h
+1526394073 c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\lista.h
 	"grafo.h"
 
-1526349889 c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\grafo.h
+1526394465 c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\grafo.h
 
 1526340324 c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\fila.h
 	"lista.h"
 
-1526348675 source:c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\lista.c
+1526394073 source:c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\lista.c
 	<stdlib.h>
 	<stdio.h>
 	"grafo.h"
 	"lista.h"
 
-1526350041 source:c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\grafo.c
+1526394646 source:c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\grafo.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
+	<limits.h>
 	"grafo.h"
 	"lista.h"
 
-1526349809 source:c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\main.c
+1526394193 source:c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

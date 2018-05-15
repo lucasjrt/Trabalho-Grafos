@@ -12,7 +12,7 @@ int ehAdjacente(Grafo *g, int v1, int v2);
 int grauVertice(Grafo *g, int v);
 int pesoAresta(Grafo *g, int v1, int v2);
 void busca_largura(Grafo *g, int v);
-void dijkstra(Grafo *g, int v);
+void dijkstra(Grafo *g, int po, int pd);
 void imprimeVertices(Grafo *g);
 void imprimeListaAdj(Grafo *g);
 void imprimeListaAdjDet(Grafo *g);

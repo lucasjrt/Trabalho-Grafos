@@ -1,8 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
 #include "grafo.h"
 #include "lista.h"
+#define MINFINITO INT_MIN
 
 struct vertice {
     int id;
@@ -64,7 +66,7 @@ Grafo *cria_grafo(int tam) {
     return NULL;
 }
 
-//Retorna o grau do vértice v
+//Retorna o grau do vï¿½rtice v
 int grauVertice(Grafo *g, int v) {
     if (g == NULL) {
         printf("Grafo inconsistente.\n");
@@ -77,7 +79,7 @@ int grauVertice(Grafo *g, int v) {
     }
 }
 
-//Retorna o peso da aresta entre o vértice 1 e o vértice 2
+//Retorna o peso da aresta entre o vï¿½rtice 1 e o vï¿½rtice 2
 int pesoAresta(Grafo *g, int v1, int v2) {
     return getPeso(g->arestas[v1], v2);
 }
@@ -93,11 +95,7 @@ void busca_largura(Grafo *g, int v){
 
 }
 
-void dijkstra(Grafo *g, int v) {
 
-}
-
-//Retorna 1 se o vértice v1 for adjacente ao vértice v2
 int ehAdjacente(Grafo *g, int v1, int v2) {
     if (g == NULL) {
         printf("Grafo inconsistente.\n");
@@ -113,16 +111,68 @@ int ehAdjacente(Grafo *g, int v1, int v2) {
     }
 }
 
-//Imprim os vértices do grafo
+//Imprime os vï¿½rtices do grafo
 void imprimeVertices(Grafo *g) {
     int i;
     for(i = 0; i < numVertices(g); i++)
         printf("id: %d\nnome: %s\nlatitude: %f\nlongitude: %f\n", g->vertice[i].id, g->vertice[i].nome, g->vertice[i].latitude, g->vertice[i].longitude);
 }
 
-//Retorna o número de vértices do grafo
+void dijkstra(Grafo *g, int po, int pd) {
+    int i, vert,k, NovaDist, min;
+    int *m, *l, *a, *caminho;
+    m = (int*)malloc(g->numVertices*sizeof(int));
+    l = (int*)malloc(g->numVertices*sizeof(int));
+    a = (int*)malloc(g->numVertices*sizeof(int));
+    caminho = (int *)malloc(g->numVertices*3*sizeof(int));
+    for (i=0; i < g->numVertices; i++)
+    {
+        m[i] = 0;
+        a[i] = -1;
+        l[i] = 2147483647;
+    }
+    vert = po;
+    l[vert] = 0;
+    No *no;
+    no = getCabeca(g->arestas[po]);
+    while (vert != pd && vert != -1) {
+        for(i=0;i<g->numVertices; i++){
+            if (no != NULL && m[i]==0) {
+                NovaDist = l[vert] + peso(no);
+
+                if (NovaDist < l[i]) {
+                    l[i] = NovaDist;
+                    a[i] = vert;
+                }
+            }
+            if (getProx(no)!= NULL) no = getProx(no);
+        }
+        m[vert] = 1;
+        min = 300000;
+        vert = -1;
+        for (i=0; i<g->numVertices; i++)
+            if (m[i]==0 && l[i] < min) {
+                min = l[i];
+                vert = i;
+            }
+    }
+    if (vert == pd) {
+        printf("Caminho mais curto entre %d e %d tem comprimento %d: ",po, pd, l[pd]);
+        caminho[0] = pd;
+        k = 1;
+        while (vert != po) {
+            caminho[k]= a[vert];
+            vert = a[vert];
+            k++;
+        }
+    }
+    else
+        printf("nao exite caminho entre %d e %d", po, pd);
+}
+
+//Retorna o nï¿½mero de vï¿½rtices do grafo
 int numVertices(Grafo *g) {
-    //retorna -1 se for um grafo inválido
+    //retorna -1 se for um grafo invï¿½lido
     if(g == NULL) {
         printf("Grafo invalido.\n");
         return -1;
@@ -130,7 +180,7 @@ int numVertices(Grafo *g) {
     return g->numVertices;
 }
 
-//Insere uma aresta entre o vértice v1 e o vértice v2 com um determinado peso
+//Insere uma aresta entre o vï¿½rtice v1 e o vï¿½rtice v2 com um determinado peso
 int insereAresta(Grafo *g, int v1, int v2, int peso) {
     if (g == NULL) {
         printf("Grafo invalido.\n");
@@ -154,7 +204,7 @@ int insereAresta(Grafo *g, int v1, int v2, int peso) {
     return 1;
 }
 
-//Lê as arestas do arquivo aresta.txt
+//Lï¿½ as arestas do arquivo aresta.txt
 int leArestas(Grafo *g) {
     int i;
     int nlinhas = countlines("arestas.txt");
@@ -181,7 +231,7 @@ int leArestas(Grafo *g) {
     return 1;
 }
 
-//Imprime a lista de adjacência do grafo g
+//Imprime a lista de adjacï¿½ncia do grafo g
 void imprimeListaAdj(Grafo *g) {
     int i;
     for(i = 0; i < numVertices(g); i++) {
@@ -191,7 +241,7 @@ void imprimeListaAdj(Grafo *g) {
     }
 }
 
-//Imprime a lista de adjacência do grafo g com detalhes
+//Imprime a lista de adjacï¿½ncia do grafo g com detalhes
 void imprimeListaAdjDet(Grafo *g) {
     int i, j;
     printf("(Para visualizar o grafo com detalhes na lista de adjacencia, e' recomendado visualizar o grafo com o console em tela cheia)\n");
@@ -218,7 +268,7 @@ void imprimeListaAdjDet(Grafo *g) {
     printf("(Para visualizar o grafo com detalhes na lista de adjacencia, e' recomendado visualizar o grafo com o console em tela cheia)\n");
 }
 
-//Retorna o número de linhas do arquivo file
+//Retorna o nï¿½mero de linhas do arquivo file
 int countlines(char *file) {
     int lines = 0;
     FILE *f = fopen(file, "r");
@@ -239,7 +289,7 @@ int countlines(char *file) {
     return lines + 1;
 }
 
-//Retorna um vetor de inteiros com cada posição sendo o número de caracteres na linha i
+//Retorna um vetor de inteiros com cada posiï¿½ï¿½o sendo o nï¿½mero de caracteres na linha i
 int* ncharline(char *file) {
     int i;
     int nlines = countlines(file);
@@ -295,4 +345,15 @@ void possiveis_caminhos(Grafo *g, int v, float bytes, int seg){
 
 void corbertura_envio(Grafo *g, int v){
 
+}
+
+int posMenor(int *vetor, int tam) {
+    int i, pos = vetor[0], menor = 0;
+    for(i = 0; i < tam; i++) {
+        if (vetor[i] < menor) {
+            pos = i;
+            menor = vetor[i];
+        }
+    }
+    return pos;
 }
