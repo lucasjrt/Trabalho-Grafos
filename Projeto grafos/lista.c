@@ -20,6 +20,7 @@ struct lista {
     int tam;
 };
 
+//Retorna um ponteiro para uma lista alocada
 Lista* cria_lista() {
     Lista *l = (Lista*) malloc(sizeof(Lista));
     l->cabeca = NULL;
@@ -28,11 +29,13 @@ Lista* cria_lista() {
     return l;
 }
 
+//Retorna um ponteiro para um no alocado
 No* cria_no() {
     No *n = (No*) malloc(sizeof(No));
     return n;
 }
 
+//Retorna a cabeça da lista
 No* getCabeca(Lista *l) {
     if(l == NULL) {
         No *no = NULL;
@@ -43,6 +46,7 @@ No* getCabeca(Lista *l) {
     }
 }
 
+//Retorna o tamanho da lista (-1 se inválida)
 int tamLista(Lista *l) {
     if(l == NULL) {
         printf("Lista invalida.\n");
@@ -52,6 +56,7 @@ int tamLista(Lista *l) {
     }
 }
 
+//Adiciona um vértice à lista de ajdacência com um peso
 int insereNaLista(Lista *l, Vertice vertice, int peso) {
     if(l == NULL) {
         printf("Lista invalida.\n");
@@ -71,6 +76,7 @@ int insereNaLista(Lista *l, Vertice vertice, int peso) {
     return 1;
 }
 
+//Remove o vertice da lista l
 int removeDaLista(Lista *l, Vertice vertice) {
     if(l == NULL) {
         printf("Lista invalida.\n");
@@ -88,6 +94,7 @@ int removeDaLista(Lista *l, Vertice vertice) {
     return 1;
 }
 
+//Desaloca todos os nos da lista e por fim, a lista
 int destroiLista(Lista *l) {
     No *aux1, *aux2;
     aux1 = l->cabeca;
@@ -102,6 +109,7 @@ int destroiLista(Lista *l) {
     return 1;
 }
 
+//Retorna 1 se a lista l contém o vértice ou 0 se a lista não contém o vértice
 int contem(Lista *l, Vertice vertice) {
     No *aux = l->cabeca;
     while(aux != NULL) {
@@ -117,6 +125,7 @@ int contem(Lista *l, Vertice vertice) {
     return 1;
 }
 
+//Retorna o peso da aresta referente a lista l e o vertice com id v
 int getPeso(Lista *l, int v) {
     int i;
     No *aux = l->cabeca;
@@ -131,26 +140,32 @@ int getPeso(Lista *l, int v) {
     return aux->peso;
 }
 
+//Retorna o sizeof(Lista)
 int listaSize() {
     return sizeof(Lista);
 }
 
+//Retorna o sizeof(No)
 int noSize() {
     return sizeof(No);
 }
 
+//Retorna o prox do no
 No* getProx(No *no) {
     return no->prox;
 }
 
+//Define o no n2 como prox do no n1
 void setProx(No *n1, No *n2) {
     n1->prox = n2;
 }
 
+//Imprime a lista l
 void imprimeLista(Lista *l) {
+    int i;
     No *aux = l->cabeca;
     int tam = tamLista(l);
-    for(int i = 0; i < tam; i++) {
+    for(i = 0; i < tam; i++) {
         printf("|%3d|%5d|  | -> ", aux->vertice.id, aux->peso);
         if(i == tam - 1) printf("NULL");
         aux = aux->prox;

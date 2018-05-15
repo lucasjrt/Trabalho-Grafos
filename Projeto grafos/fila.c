@@ -13,11 +13,13 @@ struct no {
     struct no *prox;
 };
 
+//Retorna um ponteiro par auma fila alocada
 Fila* cria_fila() {
     Fila *f = (Fila*) malloc(sizeof(Fila));
     return f;
 }
 
+//Insere um valor no fim da fila
 int enfileira(Fila *f, int valor) {
     if(f == NULL) {
         printf("Fila invalida.\n");
@@ -36,7 +38,9 @@ int enfileira(Fila *f, int valor) {
     return 1;
 }
 
+//Remove o primeiro valor da fila
 int desenfileira(Fila *f) {
+    int i;
     if(f == NULL) {
         printf("Lista invalida.\n");
         return -1;
@@ -46,7 +50,7 @@ int desenfileira(Fila *f) {
     }
     int tam = tamFila(f);
     No *aux = f->fim;
-    for(int i = 0; i < tam - 2; i++)
+    for(i = 0; i < tam - 2; i++)
         aux = aux->prox;
     free(aux->prox);
     f->inicio = aux->prox;
@@ -54,6 +58,7 @@ int desenfileira(Fila *f) {
     return 1;
 }
 
+//Retorna o tamanho da fila (-1 se inválido)
 int tamFila(Fila *f) {
     if(f == NULL) {
         printf("Fila invalida.\n");
@@ -62,10 +67,12 @@ int tamFila(Fila *f) {
     else return f->tam;
 }
 
+//Imprime a fila f
 void imprimeFila(Fila *f) {
+    int i;
     No *aux = f->fim;
     int tam = tamFila(f);
-    for(int i = 0; i < tam; i++) {
+    for(i = 0; i < tam; i++) {
         printf("%d", aux->valor);
         aux = aux->prox;
         if(i < tam - 1) printf(", ");
