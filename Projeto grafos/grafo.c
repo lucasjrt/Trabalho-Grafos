@@ -18,6 +18,7 @@ struct grafo {
 
 //Retorna um ponteiro pra uma grafo alocado
 Grafo *cria_grafo(int tam) {
+    int i, j;
     if(tam <= 0)
         printf("O grafo deve ter pelo menos um vertice.\n");
     else {
@@ -32,18 +33,18 @@ Grafo *cria_grafo(int tam) {
                 g->numVertices = tam;
                 char **strings = (char**) malloc(tam* sizeof(char*));
                 int *sizelines = ncharline("nos.txt");
-                for(int i = 0; i < tam; i++) {
+                for(i = 0; i < tam; i++) {
                     strings[i] = (char*) malloc((sizelines[i] + 2) * sizeof(char));
                 }
                 FILE *f = fopen("nos.txt", "r");
                 if(f == NULL) {
                     printf("Erro ao abrir o arquivo nos.txt.\n");
                 } else {
-                    for(int i = 0; i < tam; i++) {
+                    for(i = 0; i < tam; i++) {
                         fgets(strings[i], sizelines[i] + 2, f);
                     }
                     fclose(f);
-                    for(int i = 0; i < tam; i++) {
+                    for(i = 0; i < tam; i++) {
                         g->vertice[i].id = atoi(strtok(strings[i], ";"));
                         strcpy(g->vertice[i].nome, strtok(NULL, ";"));
                         g->vertice[i].latitude = atof(strtok(NULL, ";"));
@@ -54,7 +55,7 @@ Grafo *cria_grafo(int tam) {
                 if(g->arestas == NULL)
                     printf("Erro ao alocar o vetor de listas para representar as arestas.\n");
                 else
-                    for(int i = 0; i < numVertices(g); i++)
+                    for(i = 0; i < numVertices(g); i++)
                         g->arestas[i] = cria_lista();
             }
         }
@@ -83,9 +84,10 @@ int pesoAresta(Grafo *g, int v1, int v2) {
 
 
 void busca_largura(Grafo *g, int v){
+    int i;
     int tam = numVertices(g);
     int *visitados = (int*) malloc(tam * sizeof(int));
-    for (int i= 0; i < tam; i++)
+    for (i = 0; i < tam; i++)
         visitados[i] = 0;
     visitados[0] = 1;
 
@@ -113,7 +115,8 @@ int ehAdjacente(Grafo *g, int v1, int v2) {
 
 //Imprim os vértices do grafo
 void imprimeVertices(Grafo *g) {
-    for(int i = 0; i < numVertices(g); i++)
+    int i;
+    for(i = 0; i < numVertices(g); i++)
         printf("id: %d\nnome: %s\nlatitude: %f\nlongitude: %f\n", g->vertice[i].id, g->vertice[i].nome, g->vertice[i].latitude, g->vertice[i].longitude);
 }
 
@@ -153,21 +156,22 @@ int insereAresta(Grafo *g, int v1, int v2, int peso) {
 
 //Lê as arestas do arquivo aresta.txt
 int leArestas(Grafo *g) {
+    int i;
     int nlinhas = countlines("arestas.txt");
     char **strings = (char**) malloc(nlinhas * sizeof(char*));
     int *tamlinhas = ncharline("arestas.txt");
-    for(int i = 0; i < nlinhas; i++) {
+    for(i = 0; i < nlinhas; i++) {
         strings[i] = (char*) malloc((tamlinhas[i] + 2) * sizeof(char));
     }
     FILE *f = fopen("arestas.txt", "r");
     if(f == NULL)
         printf("Erro ao abrir o arquivo arestas.txt.\n");
     else {
-        for(int i = 0; i < nlinhas; i++) {
+        for(i = 0; i < nlinhas; i++) {
             fgets(strings[i], tamlinhas[i]+2, f);
         }
         fclose(f);
-        for(int i = 0; i < nlinhas; i++) {
+        for(i = 0; i < nlinhas; i++) {
             int v1 = atoi(strtok(strings[i], ";"));
             int v2 = atoi(strtok(NULL, ";"));
             int peso = atoi(strtok(NULL, ";"));
@@ -179,7 +183,8 @@ int leArestas(Grafo *g) {
 
 //Imprime a lista de adjacência do grafo g
 void imprimeListaAdj(Grafo *g) {
-    for(int i = 0; i < numVertices(g); i++) {
+    int i;
+    for(i = 0; i < numVertices(g); i++) {
         printf("Vertice %d: ", i);
         imprimeLista(g->arestas[i]);
         printf("\n");
@@ -188,27 +193,27 @@ void imprimeListaAdj(Grafo *g) {
 
 //Imprime a lista de adjacência do grafo g com detalhes
 void imprimeListaAdjDet(Grafo *g) {
+    int i, j;
     printf("(Para visualizar o grafo com detalhes na lista de adjacencia, e' recomendado visualizar o grafo com o console em tela cheia)\n");
     int tam = numVertices(g);
     printf(" __ \n|  |");
-    for (int j = 0; j < grauVertice(g, 0); j++)
+    for (j = 0; j < grauVertice(g, 0); j++)
         printf("      ____________");
     printf("\n");
-    for(int i = 0; i < tam; i++) {
+    for(i = 0; i < tam; i++) {
         printf("|%2d| ->  ", i);
         imprimeLista(g->arestas[i]);
         printf("|__| ");
-        for(int j = 0; j < grauVertice(g, i); j++)
+        for(j = 0; j < grauVertice(g, i); j++)
             printf("    |___|_____|__|");
         printf("\n");
         if(i < tam - 1)
             printf("|  |");
         if(i + 1 < tam) {
-        for(int j = 0; j < grauVertice(g, i+1); j++)
+        for(j = 0; j < grauVertice(g, i+1); j++)
             printf("      ____________");
         }
         printf("\n");
-        //imprimeLista(g->arestas[i]);
     }
     printf("(Para visualizar o grafo com detalhes na lista de adjacencia, e' recomendado visualizar o grafo com o console em tela cheia)\n");
 }
@@ -236,9 +241,10 @@ int countlines(char *file) {
 
 //Retorna um vetor de inteiros com cada posição sendo o número de caracteres na linha i
 int* ncharline(char *file) {
+    int i;
     int nlines = countlines(file);
     int *line = (int*) malloc(nlines * sizeof(int));
-    for(int i = 0; i < nlines; i++) {
+    for(i = 0; i < nlines; i++) {
         line[i] = 0;
     }
     FILE *f = fopen(file, "r");
@@ -246,7 +252,7 @@ int* ncharline(char *file) {
         printf("Erro ao abrir o arquivo %s.\n", file);
         return NULL;
     } else {
-         for (int i = 0; i < nlines; i++) {
+         for (i = 0; i < nlines; i++) {
             char ch = fgetc(f);
             while(!feof(f)) {
                 ch = fgetc(f);
@@ -258,5 +264,3 @@ int* ncharline(char *file) {
     }
     return line;
 }
-
-

@@ -40,6 +40,7 @@ int enfileira(Fila *f, int valor) {
 
 //Remove o primeiro valor da fila
 int desenfileira(Fila *f) {
+    int i;
     if(f == NULL) {
         printf("Lista invalida.\n");
         return -1;
@@ -49,7 +50,7 @@ int desenfileira(Fila *f) {
     }
     int tam = tamFila(f);
     No *aux = f->fim;
-    for(int i = 0; i < tam - 2; i++)
+    for(i = 0; i < tam - 2; i++)
         aux = aux->prox;
     free(aux->prox);
     f->inicio = aux->prox;
@@ -68,9 +69,10 @@ int tamFila(Fila *f) {
 
 //Imprime a fila f
 void imprimeFila(Fila *f) {
+    int i;
     No *aux = f->fim;
     int tam = tamFila(f);
-    for(int i = 0; i < tam; i++) {
+    for(i = 0; i < tam; i++) {
         printf("%d", aux->valor);
         aux = aux->prox;
         if(i < tam - 1) printf(", ");

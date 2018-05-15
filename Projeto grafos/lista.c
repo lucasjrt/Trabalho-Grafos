@@ -162,9 +162,10 @@ void setProx(No *n1, No *n2) {
 
 //Imprime a lista l
 void imprimeLista(Lista *l) {
+    int i;
     No *aux = l->cabeca;
     int tam = tamLista(l);
-    for(int i = 0; i < tam; i++) {
+    for(i = 0; i < tam; i++) {
         printf("|%3d|%5d|  | -> ", aux->vertice.id, aux->peso);
         if(i == tam - 1) printf("NULL");
         aux = aux->prox;
