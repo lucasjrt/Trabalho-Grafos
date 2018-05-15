@@ -19,5 +19,6 @@ void imprimeListaAdjDet(Grafo *g);
 int destroigrafo(Grafo *g);
 int countlines(char *file);
 int* ncharline(char *file);
+void possiveis_caminhos(Grafo *g, int v, float bytes, int seg);
 
 #endif // GRAFO_H_INCLUDED

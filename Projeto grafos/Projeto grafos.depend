@@ -82,3 +82,38 @@
 1526344111 c:\users\lucas justino\documents\2018-1\aed2\trabalho grafos\trabalhografos\projeto grafos\fila.h
 	"lista.h"
 
+1526348675 source:c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+	"fila.h"
+
+1526346918 c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\lista.h
+	"grafo.h"
+
+1526349889 c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\grafo.h
+
+1526340324 c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\fila.h
+	"lista.h"
+
+1526348675 source:c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\lista.c
+	<stdlib.h>
+	<stdio.h>
+	"grafo.h"
+	"lista.h"
+
+1526350041 source:c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\grafo.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"grafo.h"
+	"lista.h"
+
+1526349809 source:c:\users\samsung\dropbox\ufu\3º semestre\trabalhos\aed2\trabalho-grafos\projeto grafos\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"grafo.h"
+	"lista.h"
+	"fila.h"
+

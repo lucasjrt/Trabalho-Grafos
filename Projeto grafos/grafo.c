@@ -18,7 +18,7 @@ struct grafo {
 
 //Retorna um ponteiro pra uma grafo alocado
 Grafo *cria_grafo(int tam) {
-    int i, j;
+    int i;
     if(tam <= 0)
         printf("O grafo deve ter pelo menos um vertice.\n");
     else {
@@ -263,4 +263,36 @@ int* ncharline(char *file) {
         }
     }
     return line;
+}
+
+void possiveis_caminhos(Grafo *g, int v, float bytes, int seg){
+    float temp;
+    int i,peso,cont=0,vet[27];
+    for(i=0 ; i<numVertices(g) ; i++){
+        if(i != v){
+            if(ehAdjacente(g,v,i)){
+                peso = pesoAresta(g,v,i);
+                temp = (bytes/peso);
+                if(temp <= seg){
+                    vet[cont] = i;
+                    cont++;
+                }
+            }
+        }
+    }
+    if(cont == 0)
+        printf("Nenhum ponto eh possivel.");
+    else{
+        printf("Os pontos possiveis sao: ");
+        for(i=0 ; i<cont ; i++){
+            printf("%d",vet[i]);
+            if(i != (cont-1))
+                printf(", ");
+        }
+    }
+    printf("\n");
+}
+
+void corbertura_envio(Grafo *g, int v){
+
 }
